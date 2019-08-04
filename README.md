@@ -54,13 +54,17 @@ export namespace StoreImpl {
 }
 ```
 
-**4. Import vuex store in main: `main.ts`**
+**4. Import vuex store in main: `main.ts` and call initialize action**
 
 ```typescript
+// In order for the notifications to disappear you have to dispatch initialize action
 export default () =>
     new Vue({
         // ...
         store: StoreImpl.store,
+        created() {
+            NotificationsModule.Actions.Initialize.dispatch(this.$store.dispatch);
+        },
     });
 ```
 
